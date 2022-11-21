@@ -6,14 +6,14 @@ import PageSinal from './pages/PageSinal';
 import PageIncludeSinal from './pages/PageIncludeSinal';
 import Erro from './pages/Erro';
 import NavBar from './components/NavBar';
-import { Toaster } from 'react-hot-toast'
+
 
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <Toaster />
+      
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/Biblioteca" element={<Biblioteca />} />
