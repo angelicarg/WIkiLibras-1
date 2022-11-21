@@ -1,5 +1,5 @@
 function PageSinal() {
-  return <div>a</div>;
+  return <div> PageSinal</div>;
 }
 
 export default PageSinal;
