@@ -14,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/Biblioteca" element={<Biblioteca />} />
-        <Route path="/paginadosinal" element={<PageSinal />} />
+        <Route path="/paginadosinal/:id" element={<PageSinal />} />
         <Route path="/PageIncludeSinal" element={<PageIncludeSinal />} />
         <Route path="*" element={<Erro />} />
       </Routes>
