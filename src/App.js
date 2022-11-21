@@ -13,9 +13,9 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/biblotecadesinais" element={<Biblioteca />} />
+        <Route path="/Biblioteca" element={<Biblioteca />} />
         <Route path="/paginadosinal" element={<PageSinal />} />
-        <Route path="/incluaumtermo" element={<PageIncludeSinal />} />
+        <Route path="/PageIncludeSinal" element={<PageIncludeSinal />} />
         <Route path="*" element={<Erro />} />
       </Routes>
     </div>
