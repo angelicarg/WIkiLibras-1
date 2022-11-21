@@ -4,19 +4,17 @@ import {
 	Button,
 	Form,
 	FloatingLabel,
-	Toast,
 	Row,
 	Col,
 } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import toast from 'react-hot-toast';
 
 function PageIncludeSinal() {
-	const [showForm, setShowForm] = useState(false);
 	const navigate = useNavigate();
-	const [reload, setReload] = useState(false);
-
+	
 	const [form, setForm] = useState({
 		termo: "",
 		fraseExemplo: "",
@@ -26,22 +24,7 @@ function PageIncludeSinal() {
 		linkContexto: "",
 	});
 
-	useEffect(() => {
-		async function pegarTermos() {
-			const response = await axios.get(
-				`https://ironrest.cyclic.app/wikilibras/`
-			);
-
-			setForm(response.data);
-		}
-
-		pegarTermos();
-	}, [reload]);
-
-	function handleReload() {
-		setReload(!reload);
-	}
-
+	
 	function handleChange(e) {
 		setForm({ ...form, [e.target.name]: e.target.value });
 	}
@@ -57,131 +40,121 @@ function PageIncludeSinal() {
 			linkTermo: "",
 			linkContexto: "",
 		});
-
-		handleReload();
-		<Toast>
-			<Toast.Header>
-				<img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-				<strong className="me-auto">WikiLibras</strong>
-			</Toast.Header>
-			<Toast.Body>Termo incluído com sucesso!</Toast.Body>
-		</Toast>;
-		setShowForm(true);
+		
 		navigate("/");
+		toast.sucess("Termo incluído!");
 	}
 
 	return (
 		<div>
 			<Container>
-				{showForm === false && (
-					<Card className="bg-dark">
-						<Form>
-							<FloatingLabel
-								controlId="floatingInput"
-								label="Termo"
-								className="mb-3"
-							>
-								<Form.Control
-									id="basic-addon1"
-									aria-label="With textarea"
-									type="text"
-									onChange={handleChange}
-									name="name"
-									value={form.termo}
-								/>
-							</FloatingLabel>
-							<FloatingLabel
-								controlId="floatingInput"
-								label="Frase de Exemplo"
-								className="mb-3"
-							>
-								<Form.Control
-									id="basic-addon1"
-									aria-label="With textarea"
-									type="text"
-									onChange={handleChange}
-									name="image"
-									value={form.fraseExemplo}
-								/>
-							</FloatingLabel>
-							<FloatingLabel
-								controlId="floatingInput"
-								label="Conceito"
-								className="mb-3"
-							>
-								<Form.Control
-									id="basic-addon1"
-									aria-label="With textarea"
-									type="text"
-									onChange={handleChange}
-									name="Conceito"
-									value={form.conceito}
-								/>
-							</FloatingLabel>
-							<FloatingLabel
-								controlId="floatingInput"
-								label="CM"
-								className="mb-3"
-							>
-								<Form.Control
-									id="basic-addon1"
-									aria-label="With textarea"
-									type="text"
-									onChange={handleChange}
-									name="cm"
-									value={form.cm}
-								/>
-							</FloatingLabel>
-							<FloatingLabel
-								controlId="floatingInput"
-								label="Link do vídeo com o termo"
-								className="mb-3"
-							>
-								<Form.Control
-									id="basic-addon1"
-									aria-label="With textarea"
-									type="link"
-									onChange={handleChange}
-									name="linkTermo"
-									value={form.linkTermo}
-								/>
-							</FloatingLabel>
-							<FloatingLabel
-								controlId="floatingInput"
-								label="Link do vídeo com o contexto"
-								className="mb-3"
-							>
-								<Form.Control
-									id="basic-addon1"
-									aria-label="With textarea"
-									type="link"
-									onChange={handleChange}
-									name="linkConceito"
-									value={form.linkConceito}
-								/>
-							</FloatingLabel>
-							<Row>
-								<Col>
-									<Link to={"/"}>
-										<Button variant="secondary" size="lg" className="mb-3">
-											Voltar
-										</Button>
-									</Link>
-								</Col>
-								<Col>
-									<Button
-										variant="success"
-										size="lg"
-										className="mb-3"
-										onClick={handleSubmit}
-									>
-										Salvar
+				<Card className="bg-dark">
+					<Form>
+						<FloatingLabel
+							controlId="floatingInput"
+							label="Termo"
+							className="mb-3"
+						>
+							<Form.Control
+								id="basic-addon1"
+								aria-label="With textarea"
+								type="text"
+								onChange={handleChange}
+								name="termo"
+								value={form.termo}
+							/>
+						</FloatingLabel>
+						<FloatingLabel
+							controlId="floatingInput"
+							label="Frase de Exemplo"
+							className="mb-3"
+						>
+							<Form.Control
+								id="basic-addon1"
+								aria-label="With textarea"
+								type="text"
+								onChange={handleChange}
+								name="fraseExemplo"
+								value={form.fraseExemplo}
+							/>
+						</FloatingLabel>
+						<FloatingLabel
+							controlId="floatingInput"
+							label="Conceito"
+							className="mb-3"
+						>
+							<Form.Control
+								id="basic-addon1"
+								aria-label="With textarea"
+								type="text"
+								onChange={handleChange}
+								name="conceito"
+								value={form.conceito}
+							/>
+						</FloatingLabel>
+						<FloatingLabel
+							controlId="floatingInput"
+							label="Configuração de Mão"
+							className="mb-3"
+						>
+							<Form.Control
+								id="basic-addon1"
+								aria-label="With textarea"
+								type="text"
+								onChange={handleChange}
+								name="cm"
+								value={form.cm}
+							/>
+						</FloatingLabel>
+						<FloatingLabel
+							controlId="floatingInput"
+							label="Link do vídeo com o termo"
+							className="mb-3"
+						>
+							<Form.Control
+								id="basic-addon1"
+								aria-label="With textarea"
+								type="text"
+								onChange={handleChange}
+								name="linkTermo"
+								value={form.linkTermo}
+							/>
+						</FloatingLabel>
+						<FloatingLabel
+							controlId="floatingInput"
+							label="Link do vídeo com o contexto"
+							className="mb-3"
+						>
+							<Form.Control
+								id="basic-addon1"
+								aria-label="With textarea"
+								type="text"
+								onChange={handleChange}
+								name="linkConceito"
+								value={form.linkConceito}
+							/>
+						</FloatingLabel>
+						<Row>
+							<Col>
+								<Link to={"/"}>
+									<Button variant="secondary" size="lg" className="mb-3">
+										Voltar
 									</Button>
-								</Col>
-							</Row>
-						</Form>
-					</Card>
-				)}
+								</Link>
+							</Col>
+							<Col>
+								<Button
+									variant="success"
+									size="lg"
+									className="mb-3"
+									onClick={handleSubmit}
+								>
+									Incluir
+								</Button>
+							</Col>
+						</Row>
+					</Form>
+				</Card>
 			</Container>
 		</div>
 	);
