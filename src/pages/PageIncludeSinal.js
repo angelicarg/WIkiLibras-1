@@ -5,7 +5,8 @@ import {
 	Form,
 	FloatingLabel,
 	Toast,
-	Row, Col
+	Row,
+	Col,
 } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
@@ -160,23 +161,23 @@ function PageIncludeSinal() {
 								/>
 							</FloatingLabel>
 							<Row>
-                <Col>
-								<Link to={"/"}>
-									<Button variant="secondary" size="lg" className="mb-3">
-										Voltar
+								<Col>
+									<Link to={"/"}>
+										<Button variant="secondary" size="lg" className="mb-3">
+											Voltar
+										</Button>
+									</Link>
+								</Col>
+								<Col>
+									<Button
+										variant="success"
+										size="lg"
+										className="mb-3"
+										onClick={handleSubmit}
+									>
+										Salvar
 									</Button>
-								</Link>
-                </Col>
-                <Col>
-								<Button
-									variant="success"
-									size="lg"
-									className="mb-3"
-									onClick={handleSubmit}
-								>
-									Salvar
-								</Button>
-                </Col>
+								</Col>
 							</Row>
 						</Form>
 					</Card>
