@@ -28,6 +28,7 @@ function PageIncludeSinal() {
 	function handleChange(e) {
 		setForm({ ...form, [e.target.name]: e.target.value });
 	}
+	
 
 	async function handleSubmit(e) {
 		e.preventDefault();
@@ -42,7 +43,15 @@ function PageIncludeSinal() {
 		});
 		
 		navigate("/");
-		toast.sucess("Termo incluído!");
+		toast('Termo incluído com sucesso!', {
+			icon: '👏',
+			style: {
+				borderRadius: '10px',
+				background: '#333',
+				color: '#fff',
+			  },
+			  duration: 2000,
+		  });
 	}
 
 	return (
