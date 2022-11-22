@@ -1,14 +1,24 @@
-import { Row, Col, Button, Container } from "react-bootstrap";
+import {
+	Row,
+	Col,
+	Button,
+	Container,
+	Card,
+	Form,
+	FloatingLabel,
+} from "react-bootstrap";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import toast from "react-hot-toast";
+import ReactPlayer from "react-player/youtube";
 
 function PageSinal() {
 	const navigate = useNavigate();
-	const termoId = useParams();
+	const { id } = useParams();
 	const [termo, setTermo] = useState({});
 	const [reload, setReload] = useState(false);
+	const [showForm, setShowForm] = useState();
 
 	const [form, setForm] = useState({
 		termo: "",
@@ -19,25 +29,29 @@ function PageSinal() {
 		linkContexto: "",
 	});
 
+	
+	
 	useEffect(() => {
 		async function fetchTermo() {
 			const response = await axios.get(
-				`https://ironrest.cyclic.app/wikilibras/${termoId.id}`
-			);
-			setTermo(response.data);
+				`https://ironrest.cyclic.app/wikilibras/${id}`
+				);
+				setTermo(response.data);
+				
+				setForm(response.data);
+			}
+			
+			fetchTermo();
+		}, [reload]);
 
-			setForm(response.data);
-		}
-
-		fetchTermo();
-	}, [reload]);
-
+		console.log(id)
+		
 	function handleReload() {
 		setReload(!reload);
 	}
 
 	async function handleDelete() {
-		await axios.delete(`https://ironrest.cyclic.app/wikilibras/${termoId.id}`);
+		await axios.delete(`https://ironrest.cyclic.app/wikilibras/${id}`);
 		navigate("/");
 		toast.error("Termo excluído!", {
 			style: {
@@ -46,28 +60,210 @@ function PageSinal() {
 			duration: 2000,
 		});
 	}
+	async function handleSubmit(e) {
+		e.preventDefault();
+
+		try {
+			const clone = { ...form };
+			delete clone._id;
+			await axios.put(
+				`https://ironrest.cyclic.app/wikilibras/${id}`,
+				clone
+			);
+			setReload(!reload);
+			setShowForm(false);
+		} catch (error) {
+			console.log(error);
+		}
+
+		handleReload();
+		toast.success("Termo editado!");
+		setShowForm(false);
+	}
+
+	function handleChange(e) {
+		setForm({ ...form, [e.target.name]: e.target.value });
+	}
+
+	function handleEdit() {
+		setShowForm(!showForm);
+	}
+
+	// let urlLinkTermo = termo.linkTermo;
+	// let urlLinkContexto = termo.linkContexto;
+
+	// urlLinkTermo = urlLinkTermo.replace("watch?v=", "embed/");
+	// urlLinkContexto = urlLinkContexto.replace("watch?v=", "embed/");
 
 	return (
 		<Container>
-			<Row>
-				<Col>
-					<Link to={"/"}>
-						<Button
-							variant="danger"
-							size="lg"
+			{!showForm && (
+				<Card>
+					<div key={termo._id}>
+						<iframe
+							width="560"
+							height="315"
+							src={termo.linkTermo && termo.linkTermo.replace("watch?v=", "embed/")}
+							title="YouTube video player"
+							frameBorder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+							allowFullScreen
+						></iframe>
+						<iframe
+							width="560"
+							height="315"
+							src={termo.linkContexto && termo.linkContexto.replace("watch?v=", "embed/")}
+							title="YouTube video player"
+							frameBorder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+							allowFullScreen
+						></iframe>
+						<p>{termo.termo}</p>
+						<p>{termo.fraseExemplo}</p>
+						<p>{termo.conceito}</p>
+						<p>{termo.cm}</p>
+					</div>
+					<Row>
+						<Col>
+							<Link to={"/Biblioteca/"}>
+								<Button variant="secondary" size="lg" className="mb-3">
+									Voltar
+								</Button>
+							</Link>
+						</Col>
+						<Col>
+							<Button
+								variant="info"
+								size="lg"
+								className="mb-3"
+								onClick={() => {
+									setShowForm(!showForm);
+								}}
+							>
+								Editar termo
+							</Button>
+						</Col>
+					</Row>
+				</Card>
+			)}
+			{showForm === true && (
+				<Card className="bg-dark">
+					<Form>
+						<FloatingLabel
+							label="Termo"
 							className="mb-3"
-							onClick={handleDelete}
 						>
-							Excluir
-						</Button>
-					</Link>
-				</Col>
-				<Col>
-					<Button variant="primary" size="lg" className="mb-3">
-						Editar
-					</Button>
-				</Col>
-			</Row>
+							<Form.Control
+								id="basic-addon1"
+								aria-label="With textarea"
+								type="text"
+								onChange={handleChange}
+								name="termo"
+								value={form.termo}
+							/>
+						</FloatingLabel>
+						<FloatingLabel
+							label="Frase de Exemplo"
+							className="mb-3"
+						>
+							<Form.Control
+								id="basic-addon1"
+								aria-label="With textarea"
+								type="text"
+								onChange={handleChange}
+								name="fraseExemplo"
+								value={form.fraseExemplo}
+							/>
+						</FloatingLabel>
+						<FloatingLabel
+							label="Conceito"
+							className="mb-3"
+						>
+							<Form.Control
+								id="basic-addon1"
+								aria-label="With textarea"
+								type="text"
+								onChange={handleChange}
+								name="conceito"
+								value={form.conceito}
+							/>
+						</FloatingLabel>
+						<FloatingLabel
+							label="Configuração de Mão"
+							className="mb-3"
+						>
+							<Form.Control
+								id="basic-addon1"
+								aria-label="With textarea"
+								type="text"
+								onChange={handleChange}
+								name="cm"
+								value={form.cm}
+							/>
+						</FloatingLabel>
+						<FloatingLabel
+							label="Link do vídeo com o termo"
+							className="mb-3"
+						>
+							<Form.Control
+								id="basic-addon1"
+								aria-label="With textarea"
+								type="text"
+								onChange={handleChange}
+								name="linkTermo"
+								value={form.linkTermo}
+								placeholder="Link do vídeo com o termo"
+							/>
+						</FloatingLabel>
+						<FloatingLabel
+							label="Link do vídeo com o contexto"
+							className="mb-3"
+						>
+							<Form.Control
+								id="basic-addon1"
+								aria-label="With textarea"
+								type="text"
+								onChange={handleChange}
+								name="linkContexto"
+								value={form.linkContexto}
+							/>
+						</FloatingLabel>
+						<Row>
+							<Col>
+								<Button
+									variant="secondary"
+									size="lg"
+									className="mb-3"
+									onClick={handleEdit}
+								>
+									Voltar
+								</Button>
+							</Col>
+
+							<Col>
+								<Button
+									variant="danger"
+									size="lg"
+									className="mb-3"
+									onClick={handleDelete}
+								>
+									Excluir termo
+								</Button>
+							</Col>
+							<Col>
+								<Button
+									variant="success"
+									size="lg"
+									className="mb-3"
+									onClick={handleSubmit}
+								>
+									Salvar alterações
+								</Button>
+							</Col>
+						</Row>
+					</Form>
+				</Card>
+			)}
 		</Container>
 	);
 }
