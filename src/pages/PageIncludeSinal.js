@@ -60,7 +60,6 @@ function PageIncludeSinal() {
 				<Card className="bg-dark">
 					<Form>
 						<FloatingLabel
-							controlId="floatingInput"
 							label="Termo"
 							className="mb-3"
 						>
@@ -71,10 +70,10 @@ function PageIncludeSinal() {
 								onChange={handleChange}
 								name="termo"
 								value={form.termo}
+								placeholder="Termo"
 							/>
 						</FloatingLabel>
 						<FloatingLabel
-							controlId="floatingInput"
 							label="Frase de Exemplo"
 							className="mb-3"
 						>
@@ -88,7 +87,6 @@ function PageIncludeSinal() {
 							/>
 						</FloatingLabel>
 						<FloatingLabel
-							controlId="floatingInput"
 							label="Conceito"
 							className="mb-3"
 						>
@@ -102,7 +100,6 @@ function PageIncludeSinal() {
 							/>
 						</FloatingLabel>
 						<FloatingLabel
-							controlId="floatingInput"
 							label="Configuração de Mão"
 							className="mb-3"
 						>
@@ -116,7 +113,6 @@ function PageIncludeSinal() {
 							/>
 						</FloatingLabel>
 						<FloatingLabel
-							controlId="floatingInput"
 							label="Link do vídeo com o termo"
 							className="mb-3"
 						>
@@ -130,7 +126,6 @@ function PageIncludeSinal() {
 							/>
 						</FloatingLabel>
 						<FloatingLabel
-							controlId="floatingInput"
 							label="Link do vídeo com o contexto"
 							className="mb-3"
 						>
@@ -139,8 +134,8 @@ function PageIncludeSinal() {
 								aria-label="With textarea"
 								type="text"
 								onChange={handleChange}
-								name="linkConceito"
-								value={form.linkConceito}
+								name="linkContexto"
+								value={form.linkContexto}
 							/>
 						</FloatingLabel>
 						<Row>
