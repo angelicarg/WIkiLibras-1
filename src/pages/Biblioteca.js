@@ -45,9 +45,9 @@ function Biblioteca() {
             let url = termo.linkTermo.replace('watch?v=', 'embed/');
 
             return (
-              <div className="cards">
+              <div className="cards" key={termo._id}>
                 <div>
-                  <div key={termo._id}>
+                <div >
                     <Card>
                       <iframe
                         width="280"

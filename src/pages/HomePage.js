@@ -12,15 +12,15 @@ function HomePage() {
               height="315"
               src="https://www.youtube.com/embed/NpEaa2P7qZI"
               title="YouTube video player"
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
+              allowFullScreen
             ></iframe>
           </div>
 
           <Card.Body>
-            <Card.Text>
-              <h1>Apresentação e regras</h1>
+            <Card.Text className="titulo">
+              Apresentação e regras
             </Card.Text>
           </Card.Body>
           <div className="botões">
