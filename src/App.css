@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  margin: 0%;
+  height: 0%;
 }
 
 .cards {
@@ -21,4 +23,15 @@
 
 .video1 {
   justify-content: space-between;
+}
+
+.mãe {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.navBar {
+  display: flex;
 }

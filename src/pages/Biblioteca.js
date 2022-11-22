@@ -24,20 +24,19 @@ function Biblioteca() {
   }
 
   return (
-    <div className="mãe">
-      <Container>
-        <FloatingLabel
-          controlId="floatingInput"
-          label="Escreva o Termo que deseja encontrar"
-          className="mb-3"
-        >
-          <Form.Control
-            placeholder="Escreva o Termo que deseja encontrar"
-            value={search}
-            onChange={handleChange}
-          />
-        </FloatingLabel>
-
+    <Container>
+      <FloatingLabel
+        controlId="floatingInput"
+        label="Escreva o Termo que deseja encontrar"
+        className="mb-3"
+      >
+        <Form.Control
+          placeholder="Escreva o Termo que deseja encontrar"
+          value={search}
+          onChange={handleChange}
+        />
+      </FloatingLabel>
+      <div className="mãe">
         {termos
           .filter(termo =>
             termo.termo.toLowerCase().includes(search.toLowerCase())
@@ -47,30 +46,32 @@ function Biblioteca() {
 
             return (
               <div className="cards">
-                <div key={termo._id}>
-                  <Card>
-                    <iframe
-                      width="280"
-                      height="150"
-                      src={url}
-                      title="YouTube video player"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                    <Card.Body>
-                      <Card.Text>{termo.termo}</Card.Text>
-                    </Card.Body>
-                    <Link to={`/PageSinal/${termo._id}`}>
-                      <Button variant="outline-primary">Saiba Mais!</Button>
-                    </Link>
-                  </Card>
+                <div>
+                  <div key={termo._id}>
+                    <Card>
+                      <iframe
+                        width="280"
+                        height="150"
+                        src={url}
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                      <Card.Body>
+                        <Card.Text>{termo.termo}</Card.Text>
+                      </Card.Body>
+                      <Link to={`/PageSinal/${termo._id}`}>
+                        <Button variant="outline-primary">Saiba Mais!</Button>
+                      </Link>
+                    </Card>
+                  </div>
                 </div>
               </div>
             );
           })}
-      </Container>
-    </div>
+      </div>
+    </Container>
   );
 }
 
