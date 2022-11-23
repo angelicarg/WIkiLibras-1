@@ -17,6 +17,7 @@ import teste from "../assets/50x50.png";
 
 function PageIncludeSinal() {
 	const navigate = useNavigate();
+	const [value, setValue] = useState("");
 
 	const [form, setForm] = useState({
 		termo: "",
@@ -29,13 +30,11 @@ function PageIncludeSinal() {
 
 	function handleChange(e) {
 		setForm({ ...form, [e.target.name]: e.target.value });
-		console.log(e);
 	}
 
-	function handleSelect(e){
-		console.log(e);
-		
-	  }
+	function handleSelect(e) {
+		form.cm = e;
+	}
 
 	async function handleSubmit(e) {
 		e.preventDefault();
@@ -113,28 +112,19 @@ function PageIncludeSinal() {
 						<DropdownButton
 							id="dropdown-basic-button"
 							title="Configuração de mão"
+							onSelect={handleSelect}
+							name="cm"
 						>
-							<Dropdown.Item onSelect={handleSelect} eventKey="1" name="cm" value={form.cm}>
-								<img src={teste} alt= "1"/>
+							<Dropdown.Item eventKey="1" name="cm" value="1">
+								<img src={teste} alt="1" />
 							</Dropdown.Item>
-							<Dropdown.Item>
-								<img src={teste} alt= "2"/>
+							<Dropdown.Item eventKey="2">
+								<img src={teste} alt="2" />
 							</Dropdown.Item>
-							<Dropdown.Item>
-								<img src={teste} alt= "3"/>
+							<Dropdown.Item eventKey="3">
+								<img src={teste} alt="3" />
 							</Dropdown.Item>
 						</DropdownButton>
-						{/* <FloatingLabel label="Configuração de Mão" className="mb-3">
-							<Form.Control
-								id="basic-addon1"
-								aria-label="With textarea"
-								type="text"
-								onChange={handleChange}
-								name="cm"
-								value={form.cm}
-								placeholder="Configuração de mão"
-							/>
-						</FloatingLabel> */}
 						<FloatingLabel label="Link do vídeo com o termo" className="mb-3">
 							<Form.Control
 								id="basic-addon1"
