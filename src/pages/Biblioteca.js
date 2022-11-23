@@ -44,10 +44,10 @@ function Biblioteca() {
 					)
 					.map((termo) => {
 						if (termo.linkTermo.includes("watch?v=") === true) {
-							return (url = termo.linkTermo.replace("watch?v=", "embed/"));
+							url = termo.linkTermo.replace("watch?v=", "embed/");
 						}
 						if (termo.linkTermo.includes("shorts") === true) {
-							return (url = termo.linkTermo.replace("shorts", "embed"));
+							url = termo.linkTermo.replace("shorts", "embed");
 						}
 
 						return (
