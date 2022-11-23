@@ -49,7 +49,7 @@ function Biblioteca() {
 						if (termo.linkTermo.includes("shorts") === true) {
 							url = termo.linkTermo.replace("shorts", "embed");
 						}
-
+						console.log(url);
 						return (
 							<div className="cards" key={termo._id}>
 								<div>
