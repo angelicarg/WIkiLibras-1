@@ -7,12 +7,15 @@ import {
   Form,
   FloatingLabel,
   ButtonGroup,
+  Dropdown,
+  DropdownButton,
 } from 'react-bootstrap';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import Modal from 'react-bootstrap/Modal';
+import teste from '../assets/50x50.png';
 
 function PageSinal() {
   const navigate = useNavigate();
@@ -51,6 +54,10 @@ function PageSinal() {
 
   function handleReload() {
     setReload(!reload);
+  }
+
+  function handleSelect(e) {
+    form.cm = e;
   }
 
   async function handleDelete() {
@@ -212,16 +219,22 @@ function PageSinal() {
                 value={form.conceito}
               />
             </FloatingLabel>
-            <FloatingLabel label="Configuração de Mão" className="mb-3">
-              <Form.Control
-                id="basic-addon1"
-                aria-label="With textarea"
-                type="text"
-                onChange={handleChange}
-                name="cm"
-                value={form.cm}
-              />
-            </FloatingLabel>
+            <DropdownButton
+              id="dropdown-basic-button"
+              title="Configuração de mão"
+              onSelect={handleSelect}
+              name="cm"
+            >
+              <Dropdown.Item eventKey="1" name="cm" value="1">
+                <img src={teste} alt="1" />
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="2">
+                <img src={teste} alt="2" />
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="3">
+                <img src={teste} alt="3" />
+              </Dropdown.Item>
+            </DropdownButton>
             <FloatingLabel label="Link do vídeo com o termo" className="mb-3">
               <Form.Control
                 id="basic-addon1"
