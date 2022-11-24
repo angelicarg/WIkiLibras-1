@@ -59,3 +59,7 @@
   background-color: transparent;
   border: 0;
 }
+
+.dropdown-menu{
+  max-height: 500px;
+}
