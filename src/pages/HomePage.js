@@ -25,46 +25,52 @@ function HomePage() {
           </Card.Body>
           <Row>
             <Col>
-              <h5>
+              <h6 class="lead">
                 Esse é um site interativo que busca compartilhar termos em
                 Libras e em Português. Qualquer pessoa, em qualquer lugar do
                 país pode inserir um novo termo e ajudar a alimentar nossa
                 biblioteca.
-              </h5>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <br />
-              <h6>
-                Para incluir um novo sinal na biblioteca basta gravar um vídeo
-                com o termo desejado, outro vídeo com o conceito, salva os dois
-                vídeos no YouTube e usa a url dos vídeos para cadastrar o termo
-                clicando no link abaixo.
-              </h6>
-            </Col>
-            <Col>
-              <br />
-              <h6>
-                Para iniciar sua pesquisa ou busca por um termo, basta clicar no
-                botão abaixo e seguir para nossa biblioteca. A atualização é
-                instantânia e sempre pode ter a inclusão de novos termos. A
-                busca por termos específicos é feita pelo termo em português ou
-                pela CM do sinal.
               </h6>
             </Col>
           </Row>
-          <br />
-          <div className="botões">
-            <Link to={'/PageIncludeSinal'}>
-              <Button variant="outline-primary">Enviar um termo</Button>
-            </Link>
-            <Link to={'/Biblioteca/'}>
-              <Button variant="outline-secondary">Buscar por um termo</Button>
-            </Link>
-          </div>
-          <br />
         </Card>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Como Enviar um termo?</h5>
+                <p class="card-text">
+                  Para incluir um novo sinal na biblioteca basta gravar um vídeo
+                  com o termo desejado, outro vídeo com o conceito, salva os
+                  dois vídeos no YouTube e usa a url dos vídeos para cadastrar o
+                  termo clicando no link abaixo.
+                </p>
+
+                <Link to={'/PageIncludeSinal'}>
+                  <Button variant="outline-primary">Enviar um termo</Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Como Buscar por um termo?</h5>
+                <p class="card-text">
+                  Para iniciar sua busca por um termo, basta clicar no botão
+                  abaixo e seguir para nossa biblioteca. Sempre a inclusão de
+                  novos termos. A busca por termos específicos é feita pelo
+                  termo em português ou pela CM do sinal.
+                </p>
+                <Link to={'/Biblioteca/'}>
+                  <Button variant="outline-secondary">
+                    Buscar por um termo
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
       </Container>
     </div>
   );
