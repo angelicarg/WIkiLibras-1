@@ -249,6 +249,7 @@ function PageSinal() {
 				onHide={handleClose}
 				aria-labelledby="contained-modal-title-vcenter"
 				centered
+				className="overflow-auto"
 			>
 				<Modal.Header closeButton className="bg-warning">
 					<Modal.Title>Editar Termo</Modal.Title>
@@ -297,14 +298,14 @@ function PageSinal() {
 								Configuração de Mão
 							</button>
 							<div
-								className="dropdown-menu"
+								className="dropdown-menu overflow-auto"
 								aria-labelledby="dropdownMenuButton"
 								id="dropdown-basic-button"
 								title="Configuração de mão"
 								onSelect={handleSelect}
 								name="cm"
 							>
-								<div className="row no-gutters">
+								<div className="row">
 									{imagens.map((imagem) => {
 										return (
 											<img
