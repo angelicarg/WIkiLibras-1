@@ -193,19 +193,20 @@ function PageIncludeSinal() {
 								onSelect={handleSelect}
 								name="cm"
 							>
+                <div className="row no-gutters">
 								{imagens.map((imagem) => {
 									return (
-										<div
-											className="dropdown-item"
-											name="cm"
-											value="1"
-											onClick={handleSelect}
-											key={imagem}
-										>
-											<img src={`/${imagem}`} alt="3" height="100px" />
-										</div>
+                    <img
+                    className="dropdown-item"
+                    name="cm"
+                    value="1"
+                    onClick={handleSelect}
+                    key={imagem}
+                    src={`/${imagem}`} alt="3" height="80px" width="100px"
+										/>
 									);
 								})}
+                </div>
 							</div>
 						</div>
 						<FloatingLabel label="Link do vídeo com o termo" className="mb-3">
