@@ -110,40 +110,44 @@ function Biblioteca() {
           onChange={handleChange}
         />
       </FloatingLabel>
-
       <div className="dropdown">
-        <button
-          className="btn btn-secondary dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Busca por Configuração de Mão
-        </button>
-        <div
-          className="dropdown-menu"
-          aria-labelledby="dropdownMenuButton"
-          id="dropdown-basic-button"
-          title="Configuração de mão"
-          onSelect={handleSelect}
-          name="cm"
-        >
-          {imagens.map(imagem => {
-            return (
-              <div
-                className="dropdown-item"
-                name="cm"
-                value="1"
-                onClick={handleSelect}
-                key={imagem}
-              >
-                <img src={`/${imagem}`} alt="3" height="100px" />
-              </div>
-            );
-          })}
-        </div>
+							<button
+								className="btn btn-secondary dropdown-toggle"
+								type="button"
+								id="dropdownMenuButton"
+								data-toggle="dropdown"
+								aria-haspopup="true"
+								aria-expanded="false"
+							>
+								Buscar por Configuração de Mão
+							</button>
+							<div
+								className="dropdown-menu"
+								aria-labelledby="dropdownMenuButton"
+								id="dropdown-basic-button"
+								title="Configuração de mão"
+								onSelect={handleSelect}
+								name="cm"
+							>
+								<div className="row no-gutters">
+									{imagens.map((imagem) => {
+										return (
+											<img
+												className="dropdown-item"
+												name="cm"
+												value="1"
+												onClick={handleSelect}
+												key={imagem}
+												src={`/${imagem}`}
+												alt="3"
+												height="80px"
+												width="100px"
+											/>
+										);
+									})}
+								</div>
+							</div>
+						</div>
         <Button
           variant="outline-primary"
           onClick={() => {
@@ -153,7 +157,7 @@ function Biblioteca() {
         >
           Limpar Busca
         </Button>
-      </div>
+      
 
       <div className="mãe">
         {termos
