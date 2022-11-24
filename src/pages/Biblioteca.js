@@ -122,7 +122,7 @@ function Biblioteca() {
 								Buscar por Configuração de Mão
 							</button>
 							<div
-								className="dropdown-menu"
+								className="dropdown-menu overflow-auto"
 								aria-labelledby="dropdownMenuButton"
 								id="dropdown-basic-button"
 								title="Configuração de mão"
